@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- mulai dengan tag html -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enkripsi dan Dekripsi Karakter</title>
+    <!-- judul halaman -->
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-
+4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CSS -->
+    <style>
+      body {
+        background-color: lavender;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .form-container {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-control {
+        margin-bottom: 10px;
+      }
+      .result {
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1 class="text-center">Enkripsi dan Dekripsi Karakter</h1>
+      <!-- Judul  -->
+
+      <form method="post">
+        <!-- Membuat form dengan method post-->
+        <label for="input" class="text-bold"
+          >Masukkan teks yang ingin dienkripsi atau didekripsi:</label
+        >
+        <input type="text" id="input" name="input" class="form-control" />
+        <!-- Mmebuat kolom 
+input dengan tipe text  -->
+        <button type="submit" name="encryptButton" class="btn btn-primary">
+          Enkripsi
+        </button>
+        <!-- Membuat button untuk enkripsi  -->
+        <button type="submit" name="decryptButton" class="btn btn-secondary">
+          Dekripsi
+        </button>
+        <!-- Membuat button untuk dekripsi  -->
+      </form>
+
+      <?php // tag php untuk memulai script php 
+ 
+    // membuat variabel global $key yang menyimpan array asosiatif dengan pasangan karakter 
+awal(yang akan dienkripsi) sebagai key dan karakter perubahannya sebagai value.  
+    $key = array( 
+        'a' =>
+      '~', 'i' => '$', 'u' => '^', 'e' => '#', 'o' => '+', 'A' => '!', 'I' =>
+      '%', 'U' => '_', 'E' => '=', 'O' => '*', 'b' => 'q', 'c' => 'w', 'd' =>
+      'r', 'f' => 't', 'g' => 'y', 'h' => 'z', 'j' => 'u', 'k' => 'i', 'l' =>
+      'o', 'm' => 'p', 'n' => 'a', 'p' => 's', 'q' => 'd', 'r' => 'f', 's' =>
+      'g', 't' => 'h', 'v' => 'j', 'w' => 'k', 'x' => 'l', 'y' => 'x', 'z' =>
+      'c', 'B' => 'Q', 'C' => 'W', 'D' => 'R', 'F' => 'T', 'G' => 'Y', 'H' =>
+      'Z', 'J' => 'U', 'K' => 'I', 'L' => 'O', 'M' => 'P', 'N' => 'A', 'P' =>
+      'S', 'Q' => 'D', 'R' => 'F', 'S' => 'G', 'T' => 'H', 'V' => 'J', 'W' =>
+      'K', 'X' => 'L', 'Y' => 'X', 'Z' => 'C', '0' => '7', '1' => '8', '2' =>
+      '9', '3' => '0', '4' => '1', '5' => '2', '6' => '3', '7' => '4', '8' =>
+      '5', '9' => '6', '!' => '.-', '@' => 'o,', '#' => 'i>', '$' => '<.', '%'
+      => '?/', '^' => ',/', '&' => ';-', '*,' => ':', '(' => '__', ')' => '->',
+      '[' => '{0', ']' => '}[', '{' => '[;', '}' => ';]', ':' => '(l', ';' =>
+      '*-', '<' => '&u', '>' => '^o', '?' => '%-', '|' => '-+', '`' => '=-', '.'
+      => ';!' ); //Membuat function untuk mengenkripsi karakter yang diinputkan
+      function enkripsi($input){ // function enkripsi dnegna parametr variable
+      $input global $key; // memanggil variabel global $key $enkripsi =
+      strtr($input, $key); // membuat variable enkripsi yang berisi function
+      strtr (function php yang akan mengganti karakter dalam sebuah string
+      berdasarkan aturan yang ditentukan dalam bentuk array asosiatif) dengan
+      parmeter pertama berupa inputan (string yang akan diubah) dan parameter
+      kedua berupa karakter perubahan yang tersimpan di array $key. return
+      $enkripsi; // mengemablikan nilai variabel $enkripsi agar dapat digunakan
+      ketika function enkripsi dipanggil. } //Membuat function untuk mendekripsi
+      karakter yang diinputkan function dekripsi($input) {// function dekripsi
+      dengan parameter variable $input global $key; // memanggil variabel global
+      $key $dekripsi = strtr($input, array_flip($key)); // membuat variable
+      dekripsi yang berisi function strtr (function php yang akan mengganti
+      karakter dalam sebuah string berdasarkan aturan yang ditentukan dalam
+      bentuk array asosiatif) dengan parmeter pertama berupa inputan (string
+      yang akan diubah) dan parameter kedua berupa function array_flip (function
+      yang akan membalik key dan value pada array asosiatif) dengan parameter
+      array $key. return $dekripsi; // mengebalikan nilai variabel $dekripsi
+      agar dapat digunakan ketika function dekripsi dipanggil. } // Script
+      proses enkripsi dan dekripsi saat tombol diklik if
+      ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['input'])) { //
+      Memeriksa apakah ada request method POST dan apakah ada data yang
+      di-submit dengan nama/name 'input' $inputText = $_POST['input']; //
+      Mengambil nilai yang diinputkan dan menyimpannya dalam variabel $inputText
+      if (isset($_POST['encryptButton'])) { // jika button encrypt ditekan maka
+      akan menjalan kan kondisi dibawah $hasilEnkripsi = enkripsi($inputText);
+      // Memanggil function 'enkripsi' untuk mengenkripsi teks yang diinputkan
+      dan menyimpan hasilnya dalam variabel $hasilEnkripsi echo "
+      <p class="result">Teks Asli: $inputText</p>
+      "; // Menampilkan teks asli yang diinputkan echo "
+      <p class="result">Hasil Enkripsi: $hasilEnkripsi</p>
+      "; // Menampilkan hasil enkripsi dari teks yang di-inputkan } elseif
+      (isset($_POST['decryptButton'])) { // jika button decrypt ditekan maka
+      akan menjalan kan kondisi dibawah $hasilDekripsi = dekripsi($inputText);
+      // Memanggil function 'dekripsi' untuk mendekripsi teks yang diinputkan
+      dan menyimpan hasilnya dalam variabel $hasilDekripsi echo "
+      <p class="result">Teks Enkripsi: $inputText</p>
+      "; // Menampilkan teks enkripsi yang di-inputkan echo "
+      <p class="result">Hasil Dekripsi: $hasilDekripsi</p>
+      "; // Menampilkan hasil dekripsi dari teks yang di-inputkan } } ?>
+    </div>
+  </body>
+</html>

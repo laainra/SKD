@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caesar Cipher Encryption and Decryption</title>
+    <script>
+        function caesar_encrypt(text, key) {
+            var encrypted_text = "";
+            for (var i = 0; i < text.length; i++) {
+                var char = text[i];
+                if (char.match(/[a-zA-Z]/)) {
+                    var shift = char === char.toUpperCase() ? 65 : 97;
+                    var encrypted_char = String.fromCharCode((char.charCodeAt(0) - shift + key) % 26 + shift);
+                    encrypted_text += encrypted_char;
+                } else {
+                    encrypted_text += char;
+                }
+            }
+            return encrypted_text;
+        }
+
+        function caesar_decrypt(encrypted_text, key) {
+            var decrypted_text = "";
+            for (var i = 0; i < encrypted_text.length; i++) {
+                var char = encrypted_text[i];
+                if (char.match(/[a-zA-Z]/)) {
+                    var shift = char === char.toUpperCase() ? 65 : 97;
+                    var decrypted_char = String.fromCharCode((char.charCodeAt(0) - shift - key + 26) % 26 + shift);
+                    decrypted_text += decrypted_char;
+                } else {
+                    decrypted_text += char;
+                }
+            }
+            return decrypted_text;
+        }
+
+        function encryptText() {
+            var plaintext = document.getElementById("plaintext").value;
+            var key = parseInt(document.getElementById("key").value);
+            var encrypted_text = caesar_encrypt(plaintext, key);
+            document.getElementById("encrypted-text").innerHTML = "Teks terenkripsi: " + encrypted_text;
+        }
+
+        function decryptText() {
+            var encrypted_text = document.getElementById("encrypted-text").innerHTML.split(": ")[1];
+            var key = parseInt(document.getElementById("key").value);
+            var decrypted_text = caesar_decrypt(encrypted_text, key);
+            document.getElementById("decrypted-text").innerHTML = "Teks terdekripsi: " + decrypted_text;
+        }
+    </script>
+</head>
+<body>
+    <h1>Caesar Cipher Encryption and Decryption</h1>
+    <label for="plaintext">Plaintext:</label>
+    <input type="text" id="plaintext"><br>
+    <label for="key">Key:</label>
+    <input type="number" id="key"><br>
+    <button onclick="encryptText()">Encrypt</button>
+    <button onclick="decryptText()">Decrypt</button>
+    <p id="encrypted-text"></p>
+    <p id="decrypted-text"></p>
+</body>
+</html>
