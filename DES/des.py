@@ -1,118 +1,55 @@
-# from Crypto.Cipher import DES3
-# from Crypto.Util.Padding import pad, unpad
-# from Crypto.Random import get_random_bytes
-
-# # Generate a random 24-byte TDES key
-# key = get_random_bytes(24)
-
-# BLOCK_SIZE = 8
-
-# # Create a TDES cipher object for encryption
-# des = DES3.new(key, DES3.MODE_ECB)
-
-# # Input message
-# message = input("Enter the message: ")
-
-# # Convert the message to bytes and pad it
-# message_bytes = message.encode()
-# padded_message = pad(message_bytes, BLOCK_SIZE)
-
-# # Encrypt the message
-# encrypted_message = des.encrypt(padded_message)
-
-# print("Original Message: ", message)
-# print("Encrypted Message: ", encrypted_message)
-
-# # Decrypt the message using the same key
-# des = DES3.new(key, DES3.MODE_ECB)
-# decrypted_message = des.decrypt(encrypted_message)
-
-# # Unpad the decrypted message and convert it back to a string
-# unpadded_message = unpad(decrypted_message, BLOCK_SIZE)
-# decrypted_text = unpadded_message.decode()
-
-# print("Decrypted Message: ", decrypted_text)
-
-# from Crypto.Cipher import DES3
-# from Crypto.Util.Padding import pad, unpad
-# from Crypto.Random import get_random_bytes
-
-# # Input the 24-byte TDES key as ASCII characters
-# key_input = input("Enter the 24-byte TDES key (24 ASCII characters): ")
-# if len(key_input) != 24:
-#     print("Key must be exactly 24 characters long.")
-#     exit()
-
-# key = key_input.encode()
-
-# BLOCK_SIZE = 8
-
-# # Create a TDES cipher object for encryption
-# des = DES3.new(key, DES3.MODE_ECB)
-
-# # Input message
-# message = input("Enter the message: ")
-
-# # Convert the message to bytes and pad it
-# message_bytes = message.encode()
-# padded_message = pad(message_bytes, BLOCK_SIZE)
-
-# # Encrypt the message
-# encrypted_message = des.encrypt(padded_message)
-
-# print("Original Message: ", message)
-# print("Encrypted Message: ", encrypted_message)
-
-# # Decrypt the message using the same key
-# des = DES3.new(key, DES3.MODE_ECB)
-# decrypted_message = des.decrypt(encrypted_message)
-
-# # Unpad the decrypted message and convert it back to a string
-# unpadded_message = unpad(decrypted_message, BLOCK_SIZE)
-# decrypted_text = unpadded_message.decode()
-
-# print("Decrypted Message: ", decrypted_text)
+# Mengimpor modul DES dari pustaka Crypto
 from Crypto.Cipher import DES
+
+# Mengimpor fungsi pad dan unpad dari modul Crypto.Util.Padding
 from Crypto.Util.Padding import pad, unpad
+
+# Mengimpor fungsi get_random_bytes dari modul Crypto.Random
 from Crypto.Random import get_random_bytes
 
-# Input the 8-byte DES key as ASCII characters
-key_input = input("Enter the 8-byte DES key (ASCII characters): ")
+# Memasukkan kunci DES 8 byte sebagai karakter ASCII
+key_input = input("Masukkan kunci DES 8 byte (karakter ASCII): ")
+
+# Jika panjang kunci kurang dari 8, lakukan padding dengan spasi
 if len(key_input) < 8:
-    print("Key is less than 8 characters. Padding with spaces.")
+    print("Kunci kurang dari 8 karakter. Melakukan padding dengan spasi.")
     key_input = key_input.ljust(8)
 
+# Jika panjang kunci lebih dari 8, trunikasi menjadi 8 karakter
 if len(key_input) > 8:
-    print("Key is longer than 8 characters. Truncating to 8 characters.")
+    print("Kunci lebih dari 8 karakter. Mentrunkasi menjadi 8 karakter.")
     key_input = key_input[:8]
 
+# Mengubah kunci menjadi format byte
 key = key_input.encode()
 
+# Ukuran blok DES diatur ke 8 byte
 BLOCK_SIZE = 8
 
-# Create a DES cipher object for encryption
+# Membuat objek kriptografi DES untuk enkripsi
 des = DES.new(key, DES.MODE_ECB)
 
-# Input message
-message = input("Enter the message: ")
+# Memasukkan pesan
+message = input("Masukkan pesan: ")
 
-# Convert the message to bytes and pad it
+# Mengonversi pesan menjadi byte dan melakukan padding
 message_bytes = message.encode()
 padded_message = pad(message_bytes, BLOCK_SIZE)
 
-# Encrypt the message
+# Melakukan enkripsi pesan
 encrypted_message = des.encrypt(padded_message)
 
-print("Original Message: ", message)
-print("Encrypted Message: ", encrypted_message)
+# Menampilkan pesan asli dan pesan terenkripsi
+print("Pesan Asli: ", message)
+print("Pesan Terenkripsi: ", encrypted_message)
 
-# Decrypt the message using the same key
+# Mendeskripsi pesan menggunakan kunci yang sama
 des = DES.new(key, DES.MODE_ECB)
 decrypted_message = des.decrypt(encrypted_message)
 
-# Unpad the decrypted message and convert it back to a string
+# Menghilangkan padding dari pesan terdekripsi dan mengonversi kembali ke string
 unpadded_message = unpad(decrypted_message, BLOCK_SIZE)
 decrypted_text = unpadded_message.decode()
 
-print("Decrypted Message: ", decrypted_text)
-
+# Menampilkan pesan terdekripsi
+print("Pesan Terdekripsi: ", decrypted_text)
